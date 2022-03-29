@@ -7,6 +7,22 @@ class AcGameMenu {
             </div>
         `);
         this.root.$ac_game.append(this.$menu);
+
+
+        this.start();
+
+    }
+
+    start() {
+        this.show();
+    }
+
+    show() {
+        this.$menu.show();
+    }
+
+    hide() {
+        this.$menu.hide();
     }
 }
 
