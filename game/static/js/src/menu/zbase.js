@@ -9,12 +9,12 @@ class AcGameMenu {
         this.root.$ac_game.append(this.$menu);
 
 
-        this.start();
+        start();
 
     }
 
     start() {
-        this.hide();
+        hide();
     }
 
     show() {
