@@ -14,7 +14,7 @@ class AcGameMenu {
     }
 
     start() {
-        this.show();
+        this.hide();
     }
 
     show() {
