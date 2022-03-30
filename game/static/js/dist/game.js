@@ -43,7 +43,7 @@ class AcGameMenu {
         this.$single_mode.click(function () {
             console.log("single");
             outter.$menu.hide();
-            outter.root.playground.show();
+            outter.root.playground.show();//playground前不能加$会报错
         });
 
         this.$multi_mode.click(function () {
@@ -89,7 +89,7 @@ class AcGamePlayground {
     show() {
         this.$playground.show();
     }
-} class AcGame {
+}class AcGame {
     constructor(id) {//构造函数
         this.id = id;
         this.$ac_game = $('#' + id);
