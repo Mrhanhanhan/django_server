@@ -3,6 +3,14 @@ class AcGame {
         this.id = id;
         this.$ac_game = $('#' + id);
         this.menu = new AcGameMenu(this);
-        console.log("create acgame")
+        this.playground = new AcGamePlayground(this);
+
+
+        this.start();
+    }
+
+    start() {
+
     }
 }
+

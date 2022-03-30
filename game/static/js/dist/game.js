@@ -20,10 +20,11 @@ class AcGameMenu {
         `);
 
         this.root.$ac_game.append(this.$menu);
+        //把类当id用
         this.$single_mode = this.$menu.find('.ac-game-menu-field-item-single-mode')
         this.$multi_mode = this.$menu.find('.ac-game-menu-field-item-multi-mode')
         this.$settings = this.$menu.find('.ac-game-menu-field-item-settings')
-
+        //类前加. id前加#?
 
 
         this.start();
@@ -41,6 +42,8 @@ class AcGameMenu {
 
         this.$single_mode.click(function () {
             console.log("single");
+            outter.$menu.hide();
+            outter.$playground.show();
         });
 
         this.$multi_mode.click(function () {
@@ -62,11 +65,40 @@ class AcGameMenu {
     }
 }
 
-class AcGame {
+class AcGamePlayground {
+    constructor(root) {
+        this.root = root;
+        this.$playground = $(`
+            <div>单人模式</div>
+        `);
+
+        this.start();
+    }
+
+    start() {
+        ;
+    }
+
+    hide() {
+        this.$playground.hide();
+    }
+
+    show() {
+        this.$playground.show();
+    }
+}class AcGame {
     constructor(id) {//构造函数
         this.id = id;
         this.$ac_game = $('#' + id);
         this.menu = new AcGameMenu(this);
-        console.log("create acgame")
+        this.playground = new AcGamePlayground(this);
+
+
+        this.start();
+    }
+
+    start() {
+
     }
 }
+
