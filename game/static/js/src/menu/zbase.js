@@ -43,7 +43,7 @@ class AcGameMenu {
         this.$single_mode.click(function () {
             console.log("single");
             outter.$menu.hide();
-            outter.root.$playground.show();
+            outter.root.playground.show();
         });
 
         this.$multi_mode.click(function () {
