@@ -36,6 +36,9 @@ class AcGameMenu {
 
     add_listening_evens() {
         let outter = this;  //let 创建变量
+
+        console.log("DEBUG");
+
         this.$single_mode.click(function () {
             console.log("single");
         });
