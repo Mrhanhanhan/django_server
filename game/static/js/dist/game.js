@@ -36,14 +36,14 @@ class AcGameMenu {
     }
 
     add_listening_evens() {//如果listening_evens 加入this参数应该可以不用创建outer
-        let outter = this;  //let 创建变量
+        let outer = this;  //let 创建变量
 
         console.log("DEBUG");
 
         this.$single_mode.click(function () {
             console.log("single");
-            outter.$menu.hide();
-            outter.root.playground.show();//playground前不能加$会报错
+            outer.$menu.hide();
+            outer.root.playground.show();//playground前不能加$会报错
         });
 
         this.$multi_mode.click(function () {
@@ -149,7 +149,7 @@ class GameMap extends AcGameObject {
     }
 
     render() {//自写渲染函数，将canvas填充背景
-        this.ctx.fillStyle = "rgba(0,0,0)";
+        this.ctx.fillStyle = "rgba(0,0,0, 0.2)";
         this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
     }
 
@@ -169,15 +169,43 @@ class Player extends AcGameObject {
         this.is_me = is_me;
         this.eps = 0.1;//误差在0.1内算0
 
+        this.vx = 0;//x方向的速度
+        this.vy = 0;
+
     }
 
     start() {
+        if (this.is_me) {
+            this.add_listening_evens();
+        }
 
     }
 
     update() {
+
+        this.x += this.vx;
+        this.y += this.vy;
         this.render();
     }
+
+    add_listening_evens() {
+        this.playground.game_map.$canvas.on("contextmenu", function () {
+            return false;
+        });
+
+        let outer = this;
+        this.playground.game_map.$canvas.mousedown(function (e) {
+            if (e.which === 3) {
+                outer.move_to(e.clientX, e.clientY);
+            }
+        })
+
+    }
+
+    move_to(tx, ty) {
+        console.log("move to", tx, ty);
+    }
+
 
     render() {
         this.ctx.beginPath();

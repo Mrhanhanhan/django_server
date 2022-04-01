@@ -36,14 +36,14 @@ class AcGameMenu {
     }
 
     add_listening_evens() {//如果listening_evens 加入this参数应该可以不用创建outer
-        let outter = this;  //let 创建变量
+        let outer = this;  //let 创建变量
 
         console.log("DEBUG");
 
         this.$single_mode.click(function () {
             console.log("single");
-            outter.$menu.hide();
-            outter.root.playground.show();//playground前不能加$会报错
+            outer.$menu.hide();
+            outer.root.playground.show();//playground前不能加$会报错
         });
 
         this.$multi_mode.click(function () {

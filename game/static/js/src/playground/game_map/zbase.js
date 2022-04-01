@@ -18,7 +18,7 @@ class GameMap extends AcGameObject {
     }
 
     render() {//自写渲染函数，将canvas填充背景
-        this.ctx.fillStyle = "rgba(0,0,0)";
+        this.ctx.fillStyle = "rgba(0,0,0, 0.2)";
         this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
     }
 
