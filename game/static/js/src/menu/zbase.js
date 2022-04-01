@@ -35,7 +35,7 @@ class AcGameMenu {
         this.add_listening_evens();
     }
 
-    add_listening_evens() {
+    add_listening_evens() {//如果listening_evens 加入this参数应该可以不用创建outer
         let outter = this;  //let 创建变量
 
         console.log("DEBUG");
