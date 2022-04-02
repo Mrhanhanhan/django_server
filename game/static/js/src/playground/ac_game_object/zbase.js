@@ -18,13 +18,13 @@ class AcGameObject {
 
     }
 
-    on_destory() {//删除前执行一次
+    on_destroy() {//删除前执行一次
 
     }
 
-    destory() {//删掉该物体
+    destroy() {//删掉该物体
 
-        this.on_destory();
+        this.on_destroy();
 
         for (let i = 0; i < AC_GAME_OBJECTS.length; i++) {
             if (AC_GAME_OBJECTS[i] === this) {
@@ -52,8 +52,8 @@ let AC_GAME_ANIMATION = function (timestamp) {//无限递归
             obj.timedelta = timestamp - last_timestamp;
             obj.update();
         }
-        last_timestamp = timestamp;
     }
+    last_timestamp = timestamp;
 
     requestAnimationFrame(AC_GAME_ANIMATION);
 }
