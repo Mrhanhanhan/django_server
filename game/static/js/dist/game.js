@@ -215,6 +215,7 @@ class Player extends AcGameObject {
         this.color = color;
         this.speed = speed;
         this.is_me = is_me;
+        this.alive = true;
         this.eps = 0.1;//误差在0.1内算0
 
         this.vx = 0;//x方向的速度
@@ -260,11 +261,14 @@ class Player extends AcGameObject {
             } else if (e.which === 1) {
                 if (outer.cur_skill === "fireball") {
                     //判断玩家是否还存活，存活可以发射火球
-                    for (let i = 0; i < outer.playground.players.length; i++) {
-                        if (outer.playground.players[i] === outer) {
-                            outer.shoot_fireball(e.clientX, e.clientY);
-                        }
-                    }
+                    //添加alive属性
+                    if (outer.alive) outer.shoot_fireball(e.clientX, e.clientY);
+                    //枚举players判断
+                    // for (let i = 0; i < outer.playground.players.length; i++) {
+                    //     if (outer.playground.players[i] === outer) {
+                    //         outer.shoot_fireball(e.clientX, e.clientY);
+                    //     }
+                    // }
 
 
                     //outer.shoot_fireball(e.clientX, e.clientY);
@@ -340,6 +344,7 @@ class Player extends AcGameObject {
         this.radius -= damage;
 
         if (this.radius < 10) {//删除半径低于10的玩家
+            this.alive = false;
             this.destroy();
             return false;
         }
