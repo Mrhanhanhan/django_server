@@ -255,14 +255,19 @@ class Player extends AcGameObject {
         let outer = this;//第一层不需要outer, 第二层需要outer, this指代本函数
         this.playground.game_map.$canvas.mousedown(function (e) {
             if (e.which === 3) {
+                //player.x player.y 是相对坐标 clientX, clientY是屏幕坐标
                 outer.move_to(e.clientX, e.clientY);
             } else if (e.which === 1) {
                 if (outer.cur_skill === "fireball") {
+                    //判断玩家是否还存活，存活可以发射火球
                     for (let i = 0; i < outer.playground.players.length; i++) {
                         if (outer.playground.players[i] === outer) {
                             outer.shoot_fireball(e.clientX, e.clientY);
                         }
                     }
+
+
+                    //outer.shoot_fireball(e.clientX, e.clientY);
 
                 }
 
@@ -356,7 +361,7 @@ class Player extends AcGameObject {
     }
 
     update() {
-        //console.log(this.playground.players[0]);
+        console.log(this.playground.players.length);
         this.spent_time += this.timedelta / 1000;
 
         if (!this.is_me && this.spent_time > 5 && Math.random() < 1 / 200.0) {//本人也会自动攻击
