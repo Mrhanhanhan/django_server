@@ -258,7 +258,12 @@ class Player extends AcGameObject {
                 outer.move_to(e.clientX, e.clientY);
             } else if (e.which === 1) {
                 if (outer.cur_skill === "fireball") {
-                    outer.shoot_fireball(e.clientX, e.clientY);
+                    for (let i = 0; i < outer.playground.players.length; i++) {
+                        if (outer.playground.players[i] === outer) {
+                            outer.shoot_fireball(e.clientX, e.clientY);
+                        }
+                    }
+
                 }
 
                 // outer.cur_skill = "fireball";
@@ -329,7 +334,7 @@ class Player extends AcGameObject {
 
         this.radius -= damage;
 
-        if (this.radius < 10) {
+        if (this.radius < 10) {//删除半径低于10的玩家
             this.destroy();
             return false;
         }
@@ -354,7 +359,7 @@ class Player extends AcGameObject {
         //console.log(this.playground.players[0]);
         this.spent_time += this.timedelta / 1000;
 
-        if (this.spent_time > 5 && Math.random() < 1 / 200.0) {
+        if (!this.is_me && this.spent_time > 5 && Math.random() < 1 / 200.0) {//本人也会自动攻击
             let player = this.playground.players[0];
             this.shoot_fireball(player.x, player.y);
         }
@@ -387,6 +392,15 @@ class Player extends AcGameObject {
 
         this.render();
     }
+
+    on_destroy() {
+        for (let i = 0; i < this.playground.players.length; i++) {
+            if (this.playground.players[i] === this) {
+                this.playground.players.splice(i, 1);
+            }
+        }
+    }
+
 
 
 }
